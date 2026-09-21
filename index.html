@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Creator Community</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#05070f;
+color:white;
+overflow-x:hidden;
+}
+
+#bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+background:#05070f;
+}
+
+.nav{
+position:fixed;
+top:15px;
+left:50%;
+transform:translateX(-50%);
+z-index:1000;
+display:flex;
+gap:15px;
+padding:12px 20px;
+border-radius:20px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(12px);
+border:1px solid rgba(0,242,255,0.3);
+}
+
+.nav a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.nav a:hover{color:#00f2ff;}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:70px;
+color:#00f2ff;
+text-shadow:0 0 10px #00f2ff, 0 0 40px #0066ff;
+}
+
+.hero p{
+margin-top:20px;
+font-size:20px;
+color:#ccc;
+max-width:700px;
+line-height:1.8;
+}
+
+.buttons{margin-top:40px;}
+
+button{
+padding:15px 24px;
+margin:10px;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+background:linear-gradient(90deg,#00f2ff,#0066ff);
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 20px #00f2ff, 0 0 40px #0066ff;
+}
+
+/* LOGO */
+.logo{
+margin-top:40px;
+}
+
+.logo img{
+width:120px;
+filter:drop-shadow(0 0 15px #00f2ff);
+}
+
+.creators{
+padding:100px 20px;
+}
+
+.title{
+text-align:center;
+font-size:45px;
+margin-bottom:60px;
+color:#00f2ff;
+}
+
+.grid{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:40px;
+}
+
+.card{
+width:320px;
+padding:25px;
+border-radius:22px;
+text-align:center;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,242,255,0.35);
+backdrop-filter:blur(10px);
+transition:0.4s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px #00f2ff;
+}
+
+.skin{
+width:180px;
+image-rendering:pixelated;
+filter:drop-shadow(0 0 20px #00f2ff);
+}
+
+.card h2{
+margin-top:20px;
+font-size:35px;
+color:#00f2ff;
+}
+
+.card p{
+margin-top:15px;
+line-height:1.7;
+color:#ddd;
+}
+
+.footer{
+padding:30px;
+text-align:center;
+color:#888;
+}
+
+@media(max-width:700px){
+.hero h1{font-size:45px;}
+.hero p{font-size:17px;}
+.title{font-size:35px;}
+.card{width:100%;}
+.card h2{font-size:28px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="nav">
+<a href="#">Home</a>
+<a href="#creators">Creators</a>
+</div>
+
+<section class="hero">
+
+<!-- 🔥 RPZ LOGO ADDED HERE -->
+<div class="logo">
+<img src="rpzlogo.png" alt="RPZ Logo">
+</div>
+
+<h1>Creator Community</h1>
+
+<p>
+A modern gaming and creator community focused on Minecraft content, development, editing and creative projects.
+</p>
+
+<div class="buttons">
+<button onclick="openDiscord()">Join Discord</button>
+<button onclick="openYouTube()">YouTube</button>
+</div>
+
+</section>
+
+<section class="creators" id="creators">
+
+<h1 class="title">Featured Creators</h1>
+
+<div class="grid">
+
+<div class="card" onclick="rupesh()">
+<img src="https://mc-heads.net/body/Steve" class="skin">
+<h2>RupeshPlayz</h2>
+<p>Minecraft Content Creator focused on entertainment, community interaction and gaming content.</p>
+</div>
+
+<div class="card" onclick="sk()">
+<img src="https://mc-heads.net/body/Dream" class="skin">
+<h2>skwarriorKing</h2>
+<p>Discord & Minecraft Server Developer, Video Editor and Community Builder.</p>
+</div>
+
+<div class="card" onclick="naitik()">
+<img src="https://mc-heads.net/body/Alex" class="skin">
+<h2>Naitik_07</h2>
+<p>Minecraft Player, Server Co-Founder & Helper in the community.</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="footer">© Creator Community</div>
+
+<script>
+
+/* PARTICLES */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+dx:(Math.random()-0.5)*0.7,
+dy:(Math.random()-0.5)*0.7
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#00f2ff";
+
+particles.forEach(p=>{
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(animate);
+}
+animate();
+
+/* BUTTONS */
+function openDiscord(){
+window.location.href="https://discord.com";
+}
+
+function openYouTube(){
+window.location.href="https://youtube.com/@rupeshplayz777yt";
+}
+
+/* PAGES */
+function rupesh(){
+window.location.href="rupesh.html";
+}
+
+function sk(){
+window.location.href="skwarriorking.html";
+}
+
+function naitik(){
+window.location.href="naitik.html";
+}
+
+</script>
+
+</body>
+</html>

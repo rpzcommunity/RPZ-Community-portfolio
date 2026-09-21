@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Naitik_07</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#05070f;
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+#bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+background:#05070f;
+}
+
+.main{
+padding:80px 20px;
+}
+
+.card{
+position:relative;
+
+max-width:850px;
+margin:auto;
+padding:35px;
+border-radius:22px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,242,255,0.35);
+overflow:hidden;
+backdrop-filter:blur(10px);
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(45deg,#00f2ff,#0066ff,#00ffcc);
+opacity:0.12;
+z-index:0;
+}
+
+.card *{
+position:relative;
+z-index:2;
+}
+
+.skin{
+width:180px;
+image-rendering:pixelated;
+filter:drop-shadow(0 0 15px #00f2ff);
+}
+
+h1{
+font-size:55px;
+color:#00f2ff;
+text-shadow:0 0 10px #00f2ff,0 0 30px #0066ff;
+}
+
+.role{
+margin-top:10px;
+font-size:22px;
+color:#ccc;
+}
+
+.desc{
+margin-top:30px;
+line-height:1.9;
+font-size:18px;
+color:#ddd;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+margin-top:40px;
+}
+
+.stat{
+width:180px;
+padding:20px;
+border-radius:16px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,242,255,0.25);
+}
+
+.stat h2{
+color:#00f2ff;
+margin-bottom:10px;
+}
+
+.buttons{
+margin-top:40px;
+}
+
+button{
+padding:15px 24px;
+margin:10px;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+background:linear-gradient(90deg,#00f2ff,#0066ff);
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 20px #00f2ff,0 0 40px #0066ff;
+}
+
+@media(max-width:700px){
+h1{font-size:38px;}
+.skin{width:130px;}
+.stat{width:90%;}
+.role{font-size:18px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="main">
+
+<div class="card">
+
+<img src="https://mc-heads.net/body/Alex" class="skin">
+
+<h1>Naitik_07</h1>
+
+<div class="role">
+Minecraft Player • Server Co-Founder • Helper
+</div>
+
+<div class="desc">
+Naitik_07 is a Minecraft player and creative builder focused on community support, server development and collaborative gaming projects.
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>Role</h2>
+<p>Co-Founder</p>
+</div>
+
+<div class="stat">
+<h2>Support</h2>
+<p>Helper</p>
+</div>
+
+<div class="stat">
+<h2>Style</h2>
+<p>Builder</p>
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="home()">Back Home</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* SIMPLE PARTICLES */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+dx:(Math.random()-0.5)*0.8,
+dy:(Math.random()-0.5)*0.8
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#00f2ff";
+
+particles.forEach(p=>{
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+function home(){
+window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
